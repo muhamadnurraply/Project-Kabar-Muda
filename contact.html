@@ -4,11 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kabar Muda - Kontak Kami</title>
-    <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-
-    <!-- INLINE CSS -->
     <style>
         * {
             margin: 0;
@@ -25,21 +22,22 @@
         /* NAVBAR */
         .navbar {
             width: 100%;
+            padding: 18px 40px;
+            background: #fff;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 18px 40px;
+            border-bottom: 1px solid #e5e5e5;
             position: sticky;
             top: 0;
-            background: white;
-            z-index: 100;
-            border-bottom: 1px solid #e5e5e5;
+            z-index: 999;
         }
 
-        .navbar .logo_img {
+        .logo_img {
             height: 45px;
         }
 
+        /* NAV LINKS */
         .nav-links {
             display: flex;
             gap: 25px;
@@ -48,46 +46,80 @@
 
         .nav-links a {
             text-decoration: none;
+            font-weight: 600;
             color: #333;
-            font-weight: 500;
-            transition: 0.2s;
+            transition: .2s;
         }
 
         .nav-links a:hover {
             color: #0D6EFD;
         }
 
+        /* HAMBURGER */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 28px;
+            height: 3px;
+            background: #333;
+            border-radius: 5px;
+        }
+
+        /* MOBILE NAV */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: absolute;
+                top: 70px;
+                right: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+                padding: 20px 0;
+                border-bottom: 1px solid #e5e5e5;
+                display: none;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .btn-primary {
+                display: none;
+            }
+        }
+
+        /* BUTTON */
         .btn-primary {
             padding: 10px 18px;
             background: #0D6EFD;
             color: white;
-            border-radius: 10px;
             text-decoration: none;
             font-weight: 600;
-            transition: 0.2s;
+            border-radius: 10px;
         }
 
-        .btn-primary:hover {
-            background: #0b5cd4;
-        }
-
-        /* CONTACT HERO */
+        /* HERO */
         .contact-hero {
             padding: 80px 20px;
             text-align: center;
-            background: linear-gradient(135deg, #0D6EFD, #4da3ff, #a9d5ff);
+            background: linear-gradient(135deg, #0D6EFD, #4da3ff);
             color: white;
         }
 
         .contact-hero h1 {
-            font-size: 48px;
+            font-size: 46px;
             margin-bottom: 10px;
-            font-weight: 700;
-        }
-
-        .contact-hero p {
-            font-size: 18px;
-            opacity: 0.9;
         }
 
         /* CONTACT SECTION */
@@ -101,28 +133,22 @@
         }
 
         .contact-box {
-            background: white;
+            background: #fff;
             padding: 30px;
             flex: 1;
-            min-width: 320px;
+            min-width: 330px;
             border-radius: 18px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.08);
         }
 
         .contact-box h2 {
-            color: #0D6EFD;
             margin-bottom: 20px;
+            color: #0D6EFD;
         }
 
-        .contact-info p {
-            font-size: 15px;
-            margin-bottom: 12px;
-        }
-
-        /* F O R M */
         .contact-form label {
-            font-size: 14px;
             font-weight: 600;
+            font-size: 14px;
         }
 
         .contact-form input,
@@ -136,42 +162,32 @@
             font-size: 15px;
         }
 
-        .contact-form textarea {
-            height: 130px;
-            resize: none;
-        }
-
         .contact-form button {
             width: 100%;
             padding: 12px;
-            font-size: 16px;
             background: #0D6EFD;
-            color: white;
             border: none;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
             border-radius: 10px;
             cursor: pointer;
-            font-weight: 600;
         }
 
-        .contact-form button:hover {
-            background: #0b5cd4;
-        }
-
-        /* MAP */
         .map-box iframe {
-            border: 0;
-            border-radius: 18px;
             width: 100%;
             height: 350px;
+            border-radius: 18px;
+            border: 0;
         }
 
         /* FOOTER */
         .footer {
             margin-top: 60px;
-            padding: 30px 0;
+            text-align: center;
+            padding: 25px;
             background: #222;
             color: #fff;
-            text-align: center;
         }
 
     </style>
@@ -181,14 +197,20 @@
 
     <!-- NAVBAR -->
     <nav class="navbar">
-        <div class="logo">
-            <img src="assets/image/Logo (2).png" class="logo_img" alt="">
+        <img src="assets/image/Logo (2).png" class="logo_img">
+
+        <!-- HAMBURGER -->
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
 
-        <ul class="nav-links">
+        <!-- NAV LINKS -->
+        <ul class="nav-links" id="navLinks">
             <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="kontak.html" style="color:#0D6EFD; font-weight:700;">Kontak</a></li>
+            <li><a href="aboutus.html">About Us</a></li>
+            <li><a style="color:#0D6EFD; font-weight:700;" href="kontak.html">Kontak</a></li>
         </ul>
 
         <a class="btn-primary" href="#">Mulai Baca</a>
@@ -200,7 +222,7 @@
         <p>Kami siap menerima pesan, kritik, saran, atau kerja sama!</p>
     </section>
 
-    <!-- CONTACT SECTION -->
+    <!-- CONTACT -->
     <div class="contact-container">
 
         <!-- FORM -->
@@ -209,10 +231,10 @@
 
             <form>
                 <label>Nama Lengkap</label>
-                <input type="text" placeholder="Masukkan nama anda" required>
+                <input type="text" placeholder="Masukkan nama anda">
 
                 <label>Email</label>
-                <input type="email" placeholder="Masukkan email anda" required>
+                <input type="email" placeholder="Masukkan email anda">
 
                 <label>Pesan</label>
                 <textarea placeholder="Tulis pesan anda..."></textarea>
@@ -221,29 +243,39 @@
             </form>
         </div>
 
-        <!-- CONTACT INFO -->
+        <!-- INFO -->
         <div class="contact-box contact-info">
             <h2>Informasi Kontak</h2>
 
-            <p><strong>Email:</strong> kabarmuda@example.com</p>
+            <p><strong>Email:</strong> kabarmuda@gmail.com.com</p>
+            <p><strong>Whats App:</strong> +62 821-1305-8244 </p>
             <p><strong>Instagram:</strong> @kabar.muda</p>
-            <p><strong>Alamat:</strong> Makassar, Indonesia</p>
+            <p><strong>Alamat:</strong>Universitas PTIQ Jakarta Jl. Lebak Bulus Raya No.2, RT.2/RW.2, Lb. Bulus, Kec. Cilandak, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12440</p>
 
             <br>
 
             <h2>Peta Kami</h2>
             <div class="map-box">
-                <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3958.904384725585!2d119.447!3d-5.147!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dbf030c2e44b0a3%3A0x37da6f36c4d0!2sMakassar!5e0!3m2!1sid!2sid!4v0000000000">
-                </iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3279.0163555040012!2d106.77436137170973!3d-6.28967559417184!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f1d323553a2f%3A0x36b42fd414c5904c!2sUniversitas%20PTIQ%20Jakarta!5e1!3m2!1sid!2sid!4v1765218032770!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
 
     </div>
 
-   <footer class="footer">
+    <footer class="footer">
         © 2025 Kabar Muda — Semua Hak Dilindungi
     </footer>
+
+
+    <!-- JAVASCRIPT -->
+    <script>
+        const hamburger = document.getElementById("hamburger");
+        const navLinks = document.getElementById("navLinks");
+
+        hamburger.addEventListener("click", () => {
+            navLinks.classList.toggle("active");
+        });
+    </script>
 
 </body>
 </html>
