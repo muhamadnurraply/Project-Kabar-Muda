@@ -224,7 +224,7 @@ span {
 
 .unique-content h2 span {
     color: #0a84ff;
-}
+} 
 
 .unique-content p {
     font-size: 17px;
@@ -363,6 +363,12 @@ span {
     border-radius: 20px;
     display: inline-block;
     margin-top: 5px;
+}
+
+.pemimpin {
+    background: #63030331;
+    color: #f00909;
+    border: 1px solid #e01033;
 }
 
 .redaktur {
@@ -590,13 +596,16 @@ span {
   background: linear-gradient(135deg, #0066ff, #00a6ff);
   padding: 70px 0;
   color: white;
-
+}
 
 .carousel {
   position: relative;
   overflow: hidden;
   margin-top: 25px;
 }
+
+
+
 
 .carousel-track {
   display: flex;
@@ -690,12 +699,54 @@ span {
     border-radius: 5px;
 }
 
+.nav-links a {
+    padding: 10px 0;
+    transition: color .2s ease;
+}
+
+.nav-links a:hover {
+    color: #0D6EFD;
+}
+
+.hamburger.open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.hamburger.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+.hamburger span {
+    width: 28px;
+    height: 3px;
+    background: #333;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+/* animasi jadi X */
+.hamburger.open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+.hamburger.open span:nth-child(2) {
+    opacity: 0;
+}
+.hamburger.open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+
 /* MOBILE NAVBAR */
 @media (max-width: 768px) {
     .hamburger {
         display: flex;
     }
 
+    @media (max-width: 768px) {
     .nav-links {
         display: none;
         flex-direction: column;
@@ -705,17 +756,24 @@ span {
         background: white;
         padding: 20px 0;
         border-bottom: 1px solid #e5e5e5;
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: .3s ease;
     }
 
     .nav-links.active {
         display: flex;
+        opacity: 1;
+        transform: translateY(0);
     }
+}
 
     .btn-primary {
         display: none;
     }
 }
 
+
 /* ===============================
    RESPONSIVE (UNIFIED CLEAN VERSION)
    =============================== */
@@ -723,15 +781,50 @@ span {
 /* ===============================
    RESPONSIVE (UNIFIED CLEAN VERSION)
    =============================== */
+
+/* Mobile navbar */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 12px 20px;
+    flex-direction: row;          /* tetapkan tetap sejajar */
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 70px;                   /* muncul di bawah navbar */
+    left: 0;
+    right: 0;
+    display: none;
+    flex-direction: column;
+    gap: 16px;
+    background: #fff;
+    padding: 16px 0;
+    text-align: center;
+    border-bottom: 1px solid #e5e5e5;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .btn-primary {
+    display: none;               /* hide button di mobile */
+  }
+}
+
 
 /* Mobile: max-width 600px */
 @media (max-width: 600px) {
   .section-title { font-size: 1.7rem; }
   .card { padding: 18px; }
   .team-grid { grid-template-columns: 1fr; }
-
-  .navbar { flex-direction: column; gap: 15px; text-align: center; }
-  .nav-links { flex-direction: column; gap: 10px; }
 
   .hero { padding: 30px; flex-direction: column; text-align: center; }
   .hero-image { width: 80%; height: 220px; }
